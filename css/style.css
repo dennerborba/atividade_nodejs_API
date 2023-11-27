@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,200;1,9..40,100&family=Inter:wght@400;500;600;700&family=Ubuntu:wght@700&display=swap');
+
+*{
+    font-family: 'Inter', sans-serif;
+}
+
+h1{
+    text-align: center;
+    margin-top: 10px;
+    color: white;
+}
+
+body{
+    background-color: #11344f;
+}
