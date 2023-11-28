@@ -1,7 +1,6 @@
 {
   "name": "atividade_nodejs_api",
   "version": "1.0.0",
-  "description": "",
   "main": "script.js",
   "scripts": {
     "start": "npx nodemon script.js"
@@ -10,6 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
-  }
+    "bcrypt": "^5.1.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {},
+  "description": ""
 }
