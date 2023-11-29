@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "script.js",
   "scripts": {
-    "start": "npx nodemon script.js"
+    "start": "npx nodemon app.js"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,5 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2"
   },
-  "devDependencies": {},
   "description": ""
 }
