@@ -1,13 +1,5 @@
-const express = require('express')
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-const app = express()
-const port = 3000
+const nome = document.getElementById('inputNome')
+const email = document.getElementById('inputEmail')
+const senha = document.getElementById('inputSenha')
+const confirmSenha = document.getElementById('inputConfirm')
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
