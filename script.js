@@ -1,51 +1,64 @@
-document.getElementById('formCadastro').addEventListener('submit', async function (event) {
+document.getElementById('formCadastro').addEventListener('submit', function (event) {
   event.preventDefault();
 
-  const nome = document.getElementById('inputNome').value
-  const email = document.getElementById('inputEmail').value
-  const senha = document.getElementById('inputSenha').value
-  const confirmSenha = document.getElementById('inputConfirm').value
+  const cadastroForm = {
+   nome : document.getElementById('inputNome').value,
+   email : document.getElementById('inputEmail').value,
+   senha : document.getElementById('inputSenha').value,
+   confirmSenha : document.getElementById('inputConfirm').value
+  }
 
-  if (senha !== confirmSenha) {
+  if (cadastroForm.senha !== cadastroForm.confirmSenha) {
     alert('As senhas não são iguais!')
     return
   }
-  try{
-  const response = await fetch('http://localhost:3000/cadastro', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ nome, email, senha }),
-  })
 
-  const data = await response.json()
-  console.log(data)
-  } catch (error){
-    console.error('Erro:', error)
-  }
-})
+  fetch('http://localhost:3010/usuarios', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(cadastroForm)
+      })
+      .then(response => {
+        if (response.ok) {
+          alert('Usuário cadastrado com sucesso!')
+        } else {
+          throw new Error('Usuário já foi cadastrado!')
+        }
+      })
+      .catch(error => {
+        alert(error.message);
+      });
+    });
 
-document.getElementById('formLogin').addEventListener('submit', async function (event) {
+document.getElementById('formLogin').addEventListener('submit', function (event) {
   event.preventDefault();
 
-  const email = document.getElementById('inputEmail').value;
-  const senha = document.getElementById('inputSenha').value;
+  const loginForm = {   
+  email : document.getElementById('email').value,
+  senha : document.getElementById('senha').value
+  }
 
-try{
-  const response = await fetch('http://localhost:3000/login', {
+fetch('http://localhost:3010/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ email, senha }),
-  });
-
-  const data = await response.json();
-  console.log(data)
-
-  localStorage.setItem('token', data.token);
-} catch (error){
-  console.error('Erro:', error)
-}
-});
+    body: JSON.stringify(loginForm),
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.text();
+    } else {
+      throw new Error('Usuário ou senha inválidos.')
+    }
+  })
+  .then(token => {
+    localStorage.setItem('token', token)
+    alert('Login bem-sucedido!');
+  })
+  .catch(error => {
+    alert(error.message);
+  })
+})

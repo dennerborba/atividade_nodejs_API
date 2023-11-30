@@ -1,13 +1,16 @@
 const express = require('express')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const cors = require('cors')
 const app = express()
-const port = 3000
+const port = 3010
 
-const usuarios = []
+app.use(cors())
 app.use(express.json())
 
-app.post('/cadastro', (req, res) => {
+const usuarios = []
+
+app.post('/usuarios', (req, res) => {
   for(let i = 0; i < usuarios.length; i++){
     if(usuarios[i].email == req.body.email){
         res.status(406).send("Este usuário já foi cadastrado!");
@@ -38,13 +41,13 @@ app.post('/login', (req, res) => {
               id:usuarios[i].id, 
               nome:usuarios[i].nome,
               email:usuarios[i].email,
-          })  
+          },'123')  
          break    
       }
   }
 
   if(!achou){
-      res.status(404).send("Usuário ou senha inválido")
+      res.status(404).send("Usuário ou senha inválido!")
       return
   }
   
