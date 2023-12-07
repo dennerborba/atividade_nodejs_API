@@ -32,15 +32,16 @@ document.getElementById('formCadastro').addEventListener('submit', function (eve
       });
     });
 
-document.getElementById('formLogin').addEventListener('submit', function (event) {
+document.getElementById('formLogin').addEventListener('submit', 
+function (event) {
   event.preventDefault();
 
   const loginForm = {   
-  email : document.getElementById('email').value,
-  senha : document.getElementById('senha').value
+  email : document.getElementById('loginEmail').value,
+  senha : document.getElementById('loginSenha').value
   }
 
-fetch('http://localhost:3010/login', {
+fetch('http://localhost:3010/usuarios/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
